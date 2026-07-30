@@ -3,7 +3,7 @@
  * Gestion de l'authentification PIN (0000), sélection de bénévole et affichage des créneaux.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
 
   // ==========================================
   // 1. ÉTAT DE L'APPLICATION & SÉCURITÉ PIN
@@ -45,34 +45,41 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 2. GESTION DU PAVÉ NUMÉRIQUE & PIN (0000)
   // ==========================================
-  numpadBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const val = btn.getAttribute('data-val');
-      if (currentPinInput.length < 4) {
-        currentPinInput += val;
-        updatePinDots();
-        if (currentPinInput.length === 4) {
-          validatePin();
+  if (numpadBtns) {
+    numpadBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.getAttribute('data-val');
+        if (currentPinInput.length < 4) {
+          currentPinInput += val;
+          updatePinDots();
+          if (currentPinInput.length === 4) {
+            validatePin();
+          }
         }
+      });
+    });
+  }
+
+  if (pinClearBtn) {
+    pinClearBtn.addEventListener('click', () => {
+      currentPinInput = "";
+      updatePinDots();
+      if (pinErrorMsg) pinErrorMsg.textContent = "";
+    });
+  }
+
+  if (pinBackBtn) {
+    pinBackBtn.addEventListener('click', () => {
+      if (currentPinInput.length > 0) {
+        currentPinInput = currentPinInput.slice(0, -1);
+        updatePinDots();
+        if (pinErrorMsg) pinErrorMsg.textContent = "";
       }
     });
-  });
-
-  pinClearBtn.addEventListener('click', () => {
-    currentPinInput = "";
-    updatePinDots();
-    pinErrorMsg.textContent = "";
-  });
-
-  pinBackBtn.addEventListener('click', () => {
-    if (currentPinInput.length > 0) {
-      currentPinInput = currentPinInput.slice(0, -1);
-      updatePinDots();
-      pinErrorMsg.textContent = "";
-    }
-  });
+  }
 
   function updatePinDots() {
+    if (!pinDots) return;
     pinDots.forEach((dot, idx) => {
       if (idx < currentPinInput.length) {
         dot.classList.add('filled');
@@ -85,18 +92,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function validatePin() {
     if (currentPinInput === PIN_CORRECT) {
       // Déverrouillage réussi
-      pinErrorMsg.textContent = "";
-      pinScreen.classList.remove('active');
-      appWrapper.classList.remove('hidden');
+      if (pinErrorMsg) pinErrorMsg.textContent = "";
+      if (pinScreen) pinScreen.classList.remove('active');
+      if (appWrapper) appWrapper.classList.remove('hidden');
       loadData();
     } else {
       // Erreur de PIN
       const dotsContainer = document.getElementById('pin-dots');
-      dotsContainer.classList.add('shake');
-      pinErrorMsg.textContent = "Code PIN incorrect. Veuillez réessayer.";
+      if (dotsContainer) dotsContainer.classList.add('shake');
+      if (pinErrorMsg) pinErrorMsg.textContent = "Code PIN incorrect. Veuillez réessayer.";
       
       setTimeout(() => {
-        dotsContainer.classList.remove('shake');
+        if (dotsContainer) dotsContainer.classList.remove('shake');
         currentPinInput = "";
         updatePinDots();
       }, 500);
@@ -105,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Support de la saisie clavier physique pour le PIN
   document.addEventListener('keydown', (e) => {
-    if (pinScreen.classList.contains('active')) {
+    if (pinScreen && pinScreen.classList.contains('active')) {
       if (e.key >= '0' && e.key <= '9') {
         if (currentPinInput.length < 4) {
           currentPinInput += e.key;
@@ -125,12 +132,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Bouton de re-verrouillage
-  lockBtn.addEventListener('click', () => {
-    currentPinInput = "";
-    updatePinDots();
-    appWrapper.classList.add('hidden');
-    pinScreen.classList.add('active');
-  });
+  if (lockBtn) {
+    lockBtn.addEventListener('click', () => {
+      currentPinInput = "";
+      updatePinDots();
+      if (appWrapper) appWrapper.classList.add('hidden');
+      if (pinScreen) pinScreen.classList.add('active');
+    });
+  }
 
   // ==========================================
   // 3. CHARGEMENT & TRAITEMENT DES DONNÉES JSON
@@ -141,20 +150,22 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!response.ok) throw new Error("Erreur de chargement de data.json");
       allPeopleData = await response.json();
       
-      // Conserver l'ensemble des bénévoles de la base
       populatePersonSelect(allPeopleData);
     } catch (err) {
       console.error("Erreur d'import des données :", err);
-      scheduleList.innerHTML = `
-        <div class="empty-state glass-panel">
-          <span class="empty-icon">⚠️</span>
-          <p>Impossible de charger le fichier data.json. Veuillez réactualiser la page.</p>
-        </div>
-      `;
+      if (scheduleList) {
+        scheduleList.innerHTML = `
+          <div class="empty-state glass-panel">
+            <span class="empty-icon">⚠️</span>
+            <p>Impossible de charger le fichier data.json. Veuillez réactualiser la page.</p>
+          </div>
+        `;
+      }
     }
   }
 
   function populatePersonSelect(list) {
+    if (!personSelect) return;
     personSelect.innerHTML = `<option value="">-- Choisir une personne (${list.length} bénévoles) --</option>`;
     
     list.forEach(p => {
@@ -169,38 +180,45 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 4. RECHERCHE & SÉLECTION
   // ==========================================
-  personSearch.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase().trim();
-    if (query) {
-      clearSearchBtn.classList.remove('hidden');
-    } else {
+  if (personSearch) {
+    personSearch.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      if (clearSearchBtn) {
+        if (query) {
+          clearSearchBtn.classList.remove('hidden');
+        } else {
+          clearSearchBtn.classList.add('hidden');
+        }
+      }
+
+      const filtered = allPeopleData.filter(p => p.fullName.toLowerCase().includes(query));
+      populatePersonSelect(filtered);
+
+      if (filtered.length === 1 && personSelect) {
+        personSelect.value = filtered[0].id;
+        selectPerson(filtered[0].id);
+      }
+    });
+  }
+
+  if (clearSearchBtn) {
+    clearSearchBtn.addEventListener('click', () => {
+      if (personSearch) personSearch.value = "";
       clearSearchBtn.classList.add('hidden');
-    }
+      populatePersonSelect(allPeopleData);
+    });
+  }
 
-    const filtered = allPeopleData.filter(p => p.fullName.toLowerCase().includes(query));
-    populatePersonSelect(filtered);
-
-    // Si 1 seule personne correspond, la sélectionner automatiquement
-    if (filtered.length === 1) {
-      personSelect.value = filtered[0].id;
-      selectPerson(filtered[0].id);
-    }
-  });
-
-  clearSearchBtn.addEventListener('click', () => {
-    personSearch.value = "";
-    clearSearchBtn.classList.add('hidden');
-    populatePersonSelect(allPeopleData);
-  });
-
-  personSelect.addEventListener('change', (e) => {
-    selectPerson(e.target.value);
-  });
+  if (personSelect) {
+    personSelect.addEventListener('change', (e) => {
+      selectPerson(e.target.value);
+    });
+  }
 
   function selectPerson(personId) {
     if (!personId) {
       selectedPerson = null;
-      personSummaryCard.classList.add('hidden');
+      if (personSummaryCard) personSummaryCard.classList.add('hidden');
       renderSchedule([]);
       updateStats(0, 0, 0);
       return;
@@ -211,32 +229,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mise à jour de la carte profil
     const initials = selectedPerson.prenom ? selectedPerson.prenom.charAt(0) + (selectedPerson.nom ? selectedPerson.nom.charAt(0) : '') : 'B';
-    personAvatar.textContent = initials.toUpperCase();
-    personNameDisplay.textContent = selectedPerson.fullName;
+    if (personAvatar) personAvatar.textContent = initials.toUpperCase();
+    if (personNameDisplay) personNameDisplay.textContent = selectedPerson.fullName;
     
-    personTags.innerHTML = `
-      <span class="badge badge-team">${selectedPerson.role || 'Bénévole'}</span>
-      ${selectedPerson.phone ? `<span class="badge" style="background:rgba(6,182,212,0.15); color:var(--accent-cyan)">📞 ${selectedPerson.phone}</span>` : ''}
-      ${selectedPerson.regime ? `<span class="badge" style="background:rgba(245,158,11,0.15); color:var(--accent-amber)">🥗 ${selectedPerson.regime}</span>` : ''}
-    `;
+    if (personTags) {
+      personTags.innerHTML = `
+        <span class="badge badge-team">${selectedPerson.role || 'Bénévole'}</span>
+        ${selectedPerson.phone ? `<span class="badge" style="background:rgba(6,182,212,0.15); color:var(--accent-cyan)">📞 ${selectedPerson.phone}</span>` : ''}
+        ${selectedPerson.regime ? `<span class="badge" style="background:rgba(245,158,11,0.15); color:var(--accent-amber)">🥗 ${selectedPerson.regime}</span>` : ''}
+      `;
+    }
 
-    personSummaryCard.classList.remove('hidden');
+    if (personSummaryCard) personSummaryCard.classList.remove('hidden');
 
-    // Filtrer et afficher les créneaux
     applyFiltersAndRender();
   }
 
   // ==========================================
   // 5. FILTRES DE PÉRIODE & RENDU DU PLANNING
   // ==========================================
-  filterTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      filterTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      activePeriodFilter = tab.getAttribute('data-period');
-      applyFiltersAndRender();
+  if (filterTabs) {
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        activePeriodFilter = tab.getAttribute('data-period');
+        applyFiltersAndRender();
+      });
     });
-  });
+  }
 
   function applyFiltersAndRender() {
     if (!selectedPerson || !selectedPerson.shifts) {
@@ -247,7 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let shifts = [...selectedPerson.shifts];
 
-    // Trier par date puis heure
     shifts.sort((a, b) => {
       if (a.date !== b.date) return a.date.localeCompare(b.date);
       return a.time.localeCompare(b.time);
@@ -263,7 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderSchedule(shifts);
 
-    // Calcul des statistiques
     const totalShifts = shifts.length;
     const totalHours = shifts.reduce((sum, s) => sum + (s.durationHours || 1), 0);
     const uniqueTeams = new Set(shifts.map(s => s.team)).size;
@@ -272,13 +291,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateStats(shiftsCount, hoursCount, rolesCount) {
-    statTotalShifts.textContent = shiftsCount;
-    statTotalHours.textContent = `${hoursCount}h`;
-    statRolesCount.textContent = rolesCount;
-    shiftCountBadge.textContent = `${shiftsCount} créneau${shiftsCount > 1 ? 'x' : ''}`;
+    if (statTotalShifts) statTotalShifts.textContent = shiftsCount;
+    if (statTotalHours) statTotalHours.textContent = `${hoursCount}h`;
+    if (statRolesCount) statRolesCount.textContent = rolesCount;
+    if (shiftCountBadge) shiftCountBadge.textContent = `${shiftsCount} créneau${shiftsCount > 1 ? 'x' : ''}`;
   }
 
   function renderSchedule(shifts) {
+    if (!scheduleList) return;
+
     if (shifts.length === 0) {
       scheduleList.innerHTML = `
         <div class="empty-state glass-panel">
@@ -291,10 +312,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     scheduleList.innerHTML = "";
 
-    shifts.forEach((shift, index) => {
+    shifts.forEach(shift => {
       const card = document.createElement('div');
       
-      // Déterminer la classe de couleur de shift
       let shiftColorClass = 'shift-soir';
       const teamLower = (shift.team || '').toLowerCase();
       if (teamLower.includes('bar')) shiftColorClass = 'shift-bar';
@@ -344,5 +364,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     return dateStr;
   }
+}
 
-});
+// Initialisation sécurisée sur DOMContentLoaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
