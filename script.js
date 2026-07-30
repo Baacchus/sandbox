@@ -1,112 +1,348 @@
-// Banque de messages aléatoires avec catégories
-const messages = [
-  { text: "La seule façon de faire du bon travail est d'aimer ce que vous faites.", category: "🔮 Citation" },
-  { text: "Hello ! Chaque grand développeur a commencé par un simple 'Hello World'.", category: "🚀 Motivation" },
-  { text: "Le code est comme l'humour. Quand vous devez l'expliquer, c'est qu'il est mauvais.", category: "💡 Dev Fact" },
-  { text: "N'aie pas peur de progresser lentement, aie seulement peur de t'arrêter.", category: "🌟 Inspiration" },
-  { text: "Les ordinateurs sont rapides, mais les humains sont créatifs !", category: "⚡ Fun" },
-  { text: "Simplicité est la sophistication suprême. — Léonard de Vinci", category: "🔮 Citation" },
-  { text: "Un bug n'est jamais qu'une fonctionnalité qui s'exprime différemment !", category: "💡 Dev Fact" },
-  { text: "Fais aujourd'hui ce que ton futur toi te remerciera d'avoir fait.", category: "🚀 Motivation" },
-  { text: "Le meilleur moyen de prédire l'avenir, c'est de le créer.", category: "🌟 Inspiration" },
-  { text: "Hello World ! Passe une excellente journée pleine de réussite.", category: "✨ Salutation" }
-];
+/**
+ * Application Mobile de Visualisation de Planning - Balabar 2026
+ * Gestion de l'authentification PIN (0000), sélection de bénévole et affichage des créneaux.
+ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const randomTextEl = document.getElementById('random-text');
-  const categoryTagEl = document.getElementById('text-category');
-  const generateBtn = document.getElementById('generate-btn');
-  const counterEl = document.getElementById('counter');
-  const copyBtn = document.getElementById('copy-btn');
-  
-  let count = 0;
-  let currentIndex = -1;
 
-  // Fonction pour afficher un message aléatoire
-  function displayRandomMessage() {
-    let randomIndex;
-    // S'assurer qu'on ne tire pas le même message deux fois d'affilée
-    do {
-      randomIndex = Math.floor(Math.random() * messages.length);
-    } while (randomIndex === currentIndex && messages.length > 1);
+  // ==========================================
+  // 1. ÉTAT DE L'APPLICATION & SÉCURITÉ PIN
+  // ==========================================
+  const PIN_CORRECT = "0000";
+  let currentPinInput = "";
+  let allPeopleData = [];
+  let selectedPerson = null;
+  let activePeriodFilter = 'all';
 
-    currentIndex = randomIndex;
-    const selected = messages[randomIndex];
+  // Éléments DOM - Écran PIN
+  const pinScreen = document.getElementById('pin-screen');
+  const appWrapper = document.getElementById('app-wrapper');
+  const pinDots = document.querySelectorAll('#pin-dots .dot');
+  const pinErrorMsg = document.getElementById('pin-error');
+  const numpadBtns = document.querySelectorAll('.num-btn[data-val]');
+  const pinClearBtn = document.getElementById('pin-clear');
+  const pinBackBtn = document.getElementById('pin-back');
 
-    // Animation de transition fluide
-    randomTextEl.classList.add('animate-swap');
+  // Éléments DOM - Interface Principale
+  const lockBtn = document.getElementById('lock-btn');
+  const personSelect = document.getElementById('person-select');
+  const personSearch = document.getElementById('person-search');
+  const clearSearchBtn = document.getElementById('clear-search');
+  const personSummaryCard = document.getElementById('person-summary-card');
+  const personAvatar = document.getElementById('person-avatar');
+  const personNameDisplay = document.getElementById('person-name-display');
+  const personTeamBadge = document.getElementById('person-team-badge');
+  const personTags = document.getElementById('person-tags');
 
-    setTimeout(() => {
-      randomTextEl.textContent = selected.text;
-      categoryTagEl.textContent = selected.category;
-      randomTextEl.classList.remove('animate-swap');
-    }, 200);
+  // Éléments DOM - Stats & Liste
+  const statTotalShifts = document.getElementById('stat-total-shifts');
+  const statTotalHours = document.getElementById('stat-total-hours');
+  const statRolesCount = document.getElementById('stat-roles-count');
+  const shiftCountBadge = document.getElementById('shift-count-badge');
+  const scheduleList = document.getElementById('schedule-list');
+  const filterTabs = document.querySelectorAll('.filter-tabs .tab-btn');
 
-    // Incrémenter le compteur
-    count++;
-    counterEl.textContent = count;
-  }
-
-  // Événement Clic sur le bouton de génération
-  generateBtn.addEventListener('click', (e) => {
-    displayRandomMessage();
-    createParticles(e.clientX, e.clientY);
-  });
-
-  // Copier le texte dans le presse-papier
-  copyBtn.addEventListener('click', () => {
-    const textToCopy = randomTextEl.textContent.trim();
-    navigator.clipboard.writeText(textToCopy).then(() => {
-      showToast("Texte copié dans le presse-papier ! 📋");
-    }).catch(() => {
-      showToast("Impossible de copier le texte.");
+  // ==========================================
+  // 2. GESTION DU PAVÉ NUMÉRIQUE & PIN (0000)
+  // ==========================================
+  numpadBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = btn.getAttribute('data-val');
+      if (currentPinInput.length < 4) {
+        currentPinInput += val;
+        updatePinDots();
+        if (currentPinInput.length === 4) {
+          validatePin();
+        }
+      }
     });
   });
 
-  // Notification Toast
-  function showToast(message) {
-    let toast = document.querySelector('.toast-notif');
-    if (!toast) {
-      toast = document.createElement('div');
-      toast.className = 'toast-notif';
-      document.body.appendChild(toast);
+  pinClearBtn.addEventListener('click', () => {
+    currentPinInput = "";
+    updatePinDots();
+    pinErrorMsg.textContent = "";
+  });
+
+  pinBackBtn.addEventListener('click', () => {
+    if (currentPinInput.length > 0) {
+      currentPinInput = currentPinInput.slice(0, -1);
+      updatePinDots();
+      pinErrorMsg.textContent = "";
     }
-    toast.textContent = message;
-    toast.classList.add('show');
+  });
+
+  function updatePinDots() {
+    pinDots.forEach((dot, idx) => {
+      if (idx < currentPinInput.length) {
+        dot.classList.add('filled');
+      } else {
+        dot.classList.remove('filled');
+      }
+    });
+  }
+
+  function validatePin() {
+    if (currentPinInput === PIN_CORRECT) {
+      // Déverrouillage réussi
+      pinErrorMsg.textContent = "";
+      pinScreen.classList.remove('active');
+      appWrapper.classList.remove('hidden');
+      loadData();
+    } else {
+      // Erreur de PIN
+      const dotsContainer = document.getElementById('pin-dots');
+      dotsContainer.classList.add('shake');
+      pinErrorMsg.textContent = "Code PIN incorrect. Veuillez réessayer.";
+      
+      setTimeout(() => {
+        dotsContainer.classList.remove('shake');
+        currentPinInput = "";
+        updatePinDots();
+      }, 500);
+    }
+  }
+
+  // Support de la saisie clavier physique pour le PIN
+  document.addEventListener('keydown', (e) => {
+    if (pinScreen.classList.contains('active')) {
+      if (e.key >= '0' && e.key <= '9') {
+        if (currentPinInput.length < 4) {
+          currentPinInput += e.key;
+          updatePinDots();
+          if (currentPinInput.length === 4) {
+            validatePin();
+          }
+        }
+      } else if (e.key === 'Backspace') {
+        currentPinInput = currentPinInput.slice(0, -1);
+        updatePinDots();
+      } else if (e.key === 'Escape' || e.key === 'c' || e.key === 'C') {
+        currentPinInput = "";
+        updatePinDots();
+      }
+    }
+  });
+
+  // Bouton de re-verrouillage
+  lockBtn.addEventListener('click', () => {
+    currentPinInput = "";
+    updatePinDots();
+    appWrapper.classList.add('hidden');
+    pinScreen.classList.add('active');
+  });
+
+  // ==========================================
+  // 3. CHARGEMENT & TRAITEMENT DES DONNÉES JSON
+  // ==========================================
+  async function loadData() {
+    try {
+      const response = await fetch('data.json');
+      if (!response.ok) throw new Error("Erreur de chargement de data.json");
+      allPeopleData = await response.json();
+      
+      // Conserver l'ensemble des bénévoles de la base
+      populatePersonSelect(allPeopleData);
+    } catch (err) {
+      console.error("Erreur d'import des données :", err);
+      scheduleList.innerHTML = `
+        <div class="empty-state glass-panel">
+          <span class="empty-icon">⚠️</span>
+          <p>Impossible de charger le fichier data.json. Veuillez réactualiser la page.</p>
+        </div>
+      `;
+    }
+  }
+
+  function populatePersonSelect(list) {
+    personSelect.innerHTML = `<option value="">-- Choisir une personne (${list.length} bénévoles) --</option>`;
     
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 2200);
+    list.forEach(p => {
+      const option = document.createElement('option');
+      option.value = p.id;
+      const shiftCount = p.shifts ? p.shifts.length : 0;
+      option.textContent = `${p.fullName} (${shiftCount} créneau${shiftCount > 1 ? 'x' : ''})`;
+      personSelect.appendChild(option);
+    });
   }
 
-  // Effet d'étincelles lumineuses
-  function createParticles(x, y) {
-    const particles = ['✨', '🎲', '⚡', '🟣', '⭐'];
-    for (let i = 0; i < 4; i++) {
-      const particle = document.createElement('span');
-      particle.textContent = particles[Math.floor(Math.random() * particles.length)];
-      particle.style.position = 'fixed';
-      particle.style.left = `${x}px`;
-      particle.style.top = `${y}px`;
-      particle.style.fontSize = '1.2rem';
-      particle.style.pointerEvents = 'none';
-      particle.style.zIndex = '999';
-      particle.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-
-      document.body.appendChild(particle);
-
-      const destX = (Math.random() - 0.5) * 120;
-      const destY = -60 - Math.random() * 60;
-
-      requestAnimationFrame(() => {
-        particle.style.transform = `translate(${destX}px, ${destY}px) scale(0.5)`;
-        particle.style.opacity = '0';
-      });
-
-      setTimeout(() => particle.remove(), 600);
+  // ==========================================
+  // 4. RECHERCHE & SÉLECTION
+  // ==========================================
+  personSearch.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    if (query) {
+      clearSearchBtn.classList.remove('hidden');
+    } else {
+      clearSearchBtn.classList.add('hidden');
     }
+
+    const filtered = allPeopleData.filter(p => p.fullName.toLowerCase().includes(query));
+    populatePersonSelect(filtered);
+
+    // Si 1 seule personne correspond, la sélectionner automatiquement
+    if (filtered.length === 1) {
+      personSelect.value = filtered[0].id;
+      selectPerson(filtered[0].id);
+    }
+  });
+
+  clearSearchBtn.addEventListener('click', () => {
+    personSearch.value = "";
+    clearSearchBtn.classList.add('hidden');
+    populatePersonSelect(allPeopleData);
+  });
+
+  personSelect.addEventListener('change', (e) => {
+    selectPerson(e.target.value);
+  });
+
+  function selectPerson(personId) {
+    if (!personId) {
+      selectedPerson = null;
+      personSummaryCard.classList.add('hidden');
+      renderSchedule([]);
+      updateStats(0, 0, 0);
+      return;
+    }
+
+    selectedPerson = allPeopleData.find(p => p.id === personId);
+    if (!selectedPerson) return;
+
+    // Mise à jour de la carte profil
+    const initials = selectedPerson.prenom ? selectedPerson.prenom.charAt(0) + (selectedPerson.nom ? selectedPerson.nom.charAt(0) : '') : 'B';
+    personAvatar.textContent = initials.toUpperCase();
+    personNameDisplay.textContent = selectedPerson.fullName;
+    
+    personTags.innerHTML = `
+      <span class="badge badge-team">${selectedPerson.role || 'Bénévole'}</span>
+      ${selectedPerson.phone ? `<span class="badge" style="background:rgba(6,182,212,0.15); color:var(--accent-cyan)">📞 ${selectedPerson.phone}</span>` : ''}
+      ${selectedPerson.regime ? `<span class="badge" style="background:rgba(245,158,11,0.15); color:var(--accent-amber)">🥗 ${selectedPerson.regime}</span>` : ''}
+    `;
+
+    personSummaryCard.classList.remove('hidden');
+
+    // Filtrer et afficher les créneaux
+    applyFiltersAndRender();
   }
 
-  // Afficher un premier message dès le chargement
-  displayRandomMessage();
+  // ==========================================
+  // 5. FILTRES DE PÉRIODE & RENDU DU PLANNING
+  // ==========================================
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activePeriodFilter = tab.getAttribute('data-period');
+      applyFiltersAndRender();
+    });
+  });
+
+  function applyFiltersAndRender() {
+    if (!selectedPerson || !selectedPerson.shifts) {
+      renderSchedule([]);
+      updateStats(0, 0, 0);
+      return;
+    }
+
+    let shifts = [...selectedPerson.shifts];
+
+    // Trier par date puis heure
+    shifts.sort((a, b) => {
+      if (a.date !== b.date) return a.date.localeCompare(b.date);
+      return a.time.localeCompare(b.time);
+    });
+
+    if (activePeriodFilter === 'today') {
+      const todayISO = new Date().toISOString().split('T')[0];
+      shifts = shifts.filter(s => s.date === todayISO);
+    } else if (activePeriodFilter === 'upcoming') {
+      const todayISO = new Date().toISOString().split('T')[0];
+      shifts = shifts.filter(s => s.date >= todayISO);
+    }
+
+    renderSchedule(shifts);
+
+    // Calcul des statistiques
+    const totalShifts = shifts.length;
+    const totalHours = shifts.reduce((sum, s) => sum + (s.durationHours || 1), 0);
+    const uniqueTeams = new Set(shifts.map(s => s.team)).size;
+
+    updateStats(totalShifts, totalHours, uniqueTeams);
+  }
+
+  function updateStats(shiftsCount, hoursCount, rolesCount) {
+    statTotalShifts.textContent = shiftsCount;
+    statTotalHours.textContent = `${hoursCount}h`;
+    statRolesCount.textContent = rolesCount;
+    shiftCountBadge.textContent = `${shiftsCount} créneau${shiftsCount > 1 ? 'x' : ''}`;
+  }
+
+  function renderSchedule(shifts) {
+    if (shifts.length === 0) {
+      scheduleList.innerHTML = `
+        <div class="empty-state glass-panel">
+          <span class="empty-icon">📅</span>
+          <p>${selectedPerson ? 'Aucun créneau ne correspond à cette période.' : 'Veuillez sélectionner une personne ci-dessus.'}</p>
+        </div>
+      `;
+      return;
+    }
+
+    scheduleList.innerHTML = "";
+
+    shifts.forEach((shift, index) => {
+      const card = document.createElement('div');
+      
+      // Déterminer la classe de couleur de shift
+      let shiftColorClass = 'shift-soir';
+      const teamLower = (shift.team || '').toLowerCase();
+      if (teamLower.includes('bar')) shiftColorClass = 'shift-bar';
+      else if (teamLower.includes('accueil') || teamLower.includes('billetterie')) shiftColorClass = 'shift-aprem';
+      else if (teamLower.includes('green') || teamLower.includes('resto') || teamLower.includes('cuisine')) shiftColorClass = 'shift-matin';
+      else if (teamLower.includes('kif') || teamLower.includes('brigade') || teamLower.includes('artiste')) shiftColorClass = 'shift-nuit';
+
+      card.className = `shift-card glass-panel ${shiftColorClass}`;
+
+      card.innerHTML = `
+        <div class="shift-header">
+          <div class="shift-date-box">
+            <span class="shift-day-name">${shift.dateLabel || shift.date}</span>
+            <span class="shift-date">${formatDateFR(shift.date)}</span>
+          </div>
+          <div class="shift-time-badge">
+            <span class="time-icon">⏰</span>
+            <span>${shift.time}</span>
+          </div>
+        </div>
+
+        <div class="shift-body">
+          <div class="shift-role-title">${shift.team}</div>
+          <div class="shift-info-row">
+            <div class="info-item">
+              <span>🎯 Position :</span>
+              <strong>${shift.role || shift.assignment || 'Membre d\'équipe'}</strong>
+            </div>
+            <div class="info-item">
+              <span>⏳ Durée :</span>
+              <span>${shift.durationHours || 1} heure(s)</span>
+            </div>
+          </div>
+          ${shift.notes ? `<div class="shift-notes">💡 ${shift.notes}</div>` : ''}
+        </div>
+      `;
+
+      scheduleList.appendChild(card);
+    });
+  }
+
+  function formatDateFR(dateStr) {
+    if (!dateStr) return '';
+    const parts = dateStr.split('-');
+    if (parts.length === 3) {
+      return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    }
+    return dateStr;
+  }
+
 });

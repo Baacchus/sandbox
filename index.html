@@ -3,74 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Hello Random Generator - Dark Mode Mobile</title>
+  <title>Planning Exploitation - Balabar 2026</title>
   
   <!-- Typographie moderne -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-theme="dark">
 
-  <!-- Halo lumineux d'arrière-plan (Dark Mode Ambient Glow) -->
-  <div class="glow-container">
-    <div class="glow-blob blob-purple"></div>
-    <div class="glow-blob blob-cyan"></div>
+  <!-- Glow d'arrière-plan d'ambiance -->
+  <div class="ambient-glow">
+    <div class="glow-sphere sphere-1"></div>
+    <div class="glow-sphere sphere-2"></div>
+    <div class="glow-sphere sphere-3"></div>
   </div>
 
-  <!-- Conteneur Mobile -->
-  <div class="mobile-container">
+  <!-- ÉCRAN DE VERROUILLAGE CODE PIN (0000) -->
+  <div id="pin-screen" class="pin-screen active">
+    <div class="pin-card glass-panel">
+      <div class="pin-header">
+        <div class="app-logo">
+          <span class="logo-icon">🎪</span>
+        </div>
+        <h2>BALABAR 2026</h2>
+        <p class="pin-subtitle">Planning Exploitation Équipe Bénévoles</p>
+      </div>
+
+      <div class="pin-prompt">
+        <span class="lock-icon">🔒</span>
+        <p>Veuillez entrer votre code PIN</p>
+      </div>
+
+      <div class="pin-dots" id="pin-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+
+      <div id="pin-error" class="pin-error-msg"></div>
+
+      <!-- Pavé numérique -->
+      <div class="numpad">
+        <button class="num-btn" data-val="1">1</button>
+        <button class="num-btn" data-val="2">2</button>
+        <button class="num-btn" data-val="3">3</button>
+        <button class="num-btn" data-val="4">4</button>
+        <button class="num-btn" data-val="5">5</button>
+        <button class="num-btn" data-val="6">6</button>
+        <button class="num-btn" data-val="7">7</button>
+        <button class="num-btn" data-val="8">8</button>
+        <button class="num-btn" data-val="9">9</button>
+        <button class="num-btn action-btn" id="pin-clear">C</button>
+        <button class="num-btn" data-val="0">0</button>
+        <button class="num-btn action-btn" id="pin-back">⌫</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION PRINCIPALE (Invisible avant déverrouillage) -->
+  <div id="app-wrapper" class="app-wrapper hidden">
     
-    <!-- En-tête -->
-    <header class="app-header">
-      <div class="badge">
-        <span class="pulse-dot"></span>
-        <span>Dark Mode Active</span>
-      </div>
-      <div class="version-tag">v2.0 🎲</div>
-    </header>
-
-    <!-- Contenu Principal -->
-    <main class="main-content">
+    <!-- Phone Container pour Responsive Desktop & Mobile -->
+    <div class="mobile-frame">
       
-      <!-- Titre principal -->
-      <div class="hero-section">
-        <div class="icon-avatar">👋</div>
-        <h1>Hello <span class="gradient-text">World!</span></h1>
-        <p class="subtitle">Cliquez sur le bouton ci-dessous pour générer une pensée ou citation aléatoire.</p>
-      </div>
-
-      <!-- Carte d'affichage du texte aléatoire -->
-      <div class="glass-card quote-card" id="quote-card">
-        <div class="quote-icon">“</div>
-        <p id="random-text" class="quote-text">
-          Clique sur le bouton ci-dessous pour découvrir ton premier message !
-        </p>
-        <div class="quote-footer">
-          <span id="text-category" class="category-tag">✨ Découverte</span>
-          <button id="copy-btn" class="icon-action-btn" title="Copier le texte" aria-label="Copier">
+      <!-- En-tête de l'application -->
+      <header class="app-header">
+        <div class="header-top">
+          <div class="brand">
+            <span class="brand-badge">BALABAR 2026</span>
+            <span class="live-dot" title="En direct"></span>
+          </div>
+          <button id="lock-btn" class="icon-btn" title="Verrouiller l'application">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
           </button>
         </div>
-      </div>
 
-      <!-- Bouton d'action principal -->
-      <button id="generate-btn" class="primary-btn">
-        <span class="btn-icon">🎲</span>
-        <span class="btn-text">Générer un message aléatoire</span>
-      </button>
+        <div class="header-title-section">
+          <h1>Planning Exploitation</h1>
+          <p class="subtitle">Gestion & visualisation des créneaux bénévoles</p>
+        </div>
+      </header>
 
-      <!-- Compteur de messages -->
-      <div class="stats-bar">
-        <span>Messages générés : <strong id="counter">0</strong></span>
-      </div>
+      <!-- Zone de Sélection et de Filtrage -->
+      <section class="controls-section glass-panel">
+        
+        <!-- Menu déroulant Sélection de Personne -->
+        <div class="form-group">
+          <label for="person-select" class="form-label">
+            <span class="label-icon">👤</span>
+            <span>Sélectionner une personne :</span>
+          </label>
+          <div class="select-wrapper">
+            <select id="person-select" class="custom-select">
+              <option value="">-- Chargement des bénévoles... --</option>
+            </select>
+            <span class="select-arrow">▼</span>
+          </div>
+        </div>
 
-    </main>
+        <!-- Recherche rapide de bénévole -->
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="person-search" placeholder="Rechercher par nom..." autocomplete="off">
+          <button id="clear-search" class="clear-btn hidden">&times;</button>
+        </div>
+
+        <!-- Profil du membre sélectionné -->
+        <div id="person-summary-card" class="person-summary hidden">
+          <div class="avatar" id="person-avatar">?</div>
+          <div class="person-details">
+            <h3 id="person-name-display">Prénom Nom</h3>
+            <div class="person-tags" id="person-tags">
+              <span class="badge badge-team" id="person-team-badge">Équipe</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtre de Période / Vues -->
+        <div class="filter-tabs">
+          <button class="tab-btn active" data-period="all">Tout</button>
+          <button class="tab-btn" data-period="today">Aujourd'hui</button>
+          <button class="tab-btn" data-period="upcoming">À venir</button>
+        </div>
+      </section>
+
+      <!-- Cartes de Statistiques Rapides -->
+      <section class="stats-grid" id="stats-grid">
+        <div class="stat-card glass-panel">
+          <span class="stat-value" id="stat-total-shifts">0</span>
+          <span class="stat-label">Créneaux</span>
+        </div>
+        <div class="stat-card glass-panel">
+          <span class="stat-value" id="stat-total-hours">0h</span>
+          <span class="stat-label">Total Heures</span>
+        </div>
+        <div class="stat-card glass-panel">
+          <span class="stat-value" id="stat-roles-count">0</span>
+          <span class="stat-label">Postes occupés</span>
+        </div>
+      </section>
+
+      <!-- Zone d'affichage du Planning -->
+      <main class="schedule-container">
+        
+        <!-- Header de la Liste -->
+        <div class="list-header">
+          <h2>Créneaux assignés</h2>
+          <span class="shift-count-badge" id="shift-count-badge">0 créneau</span>
+        </div>
+
+        <!-- Liste des créneaux (Injectée dynamiquement en JS) -->
+        <div id="schedule-list" class="schedule-list">
+          <div class="empty-state glass-panel">
+            <span class="empty-icon">👈</span>
+            <p>Veuillez sélectionner une personne dans le menu déroulant ci-dessus pour afficher son planning.</p>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer / Crédits -->
+      <footer class="app-footer">
+        <p>Balabar 2026 • Exploitation Équipe Bénévoles</p>
+      </footer>
+    </div>
   </div>
 
   <script src="script.js"></script>
