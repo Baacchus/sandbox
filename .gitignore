@@ -1,0 +1,10 @@
+# Environment & Dependencies
+.venv/
+node_modules/
+
+# Excel files / raw data
+*.xlsx
+*.xls
+
+# System files
+.DS_Store
