@@ -2,9 +2,9 @@
   {
     "id": "user-001",
     "prenom": "Abdallah",
-    "nom": "ALHADI",
-    "fullName": "Abdallah ALHADI",
-    "phone": "07 44 82 45 74",
+    "nom": "A.",
+    "fullName": "Abdallah A.",
+    "phone": "07 44 82 ** **",
     "role": "CESAM",
     "regime": "No pork",
     "shifts": [
@@ -163,9 +163,9 @@
   {
     "id": "user-002",
     "prenom": "Adèle",
-    "nom": "GERBAUD",
-    "fullName": "Adèle GERBAUD",
-    "phone": "06 49 27 91 49",
+    "nom": "G.",
+    "fullName": "Adèle G.",
+    "phone": "06 49 27 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -654,9 +654,9 @@
   {
     "id": "user-003",
     "prenom": "Alexia",
-    "nom": "BOURGEOIS",
-    "fullName": "Alexia BOURGEOIS",
-    "phone": "06 22 06 46 68",
+    "nom": "B.",
+    "fullName": "Alexia B.",
+    "phone": "06 22 06 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -705,9 +705,9 @@
   {
     "id": "user-004",
     "prenom": "Alice",
-    "nom": "FORGEOT",
-    "fullName": "Alice FORGEOT",
-    "phone": "07 62 12 24 64",
+    "nom": "F.",
+    "fullName": "Alice F.",
+    "phone": "07 62 12 ** **",
     "role": "Communication - Vidéo",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -1086,9 +1086,9 @@
   {
     "id": "user-005",
     "prenom": "Aloise",
-    "nom": "GARCIA",
-    "fullName": "Aloise GARCIA",
-    "phone": "06 80 85 42 72",
+    "nom": "G.",
+    "fullName": "Aloise G.",
+    "phone": "06 80 85 ** **",
     "role": "Référente Brigade du Kif",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -1317,9 +1317,9 @@
   {
     "id": "user-006",
     "prenom": "Amanullah",
-    "nom": "KAKAR",
-    "fullName": "Amanullah KAKAR",
-    "phone": "07 53 59 00 91",
+    "nom": "K.",
+    "fullName": "Amanullah K.",
+    "phone": "07 53 59 ** **",
     "role": "CESAM",
     "regime": "",
     "shifts": [
@@ -1398,9 +1398,9 @@
   {
     "id": "user-007",
     "prenom": "Amélie",
-    "nom": "CHAPET",
-    "fullName": "Amélie CHAPET",
-    "phone": "06 17 07 76 00",
+    "nom": "C.",
+    "fullName": "Amélie C.",
+    "phone": "06 17 07 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -1449,9 +1449,9 @@
   {
     "id": "user-008",
     "prenom": "Amélie",
-    "nom": "BLONDEAU",
-    "fullName": "Amélie BLONDEAU",
-    "phone": "07 63 75 59 88",
+    "nom": "B.",
+    "fullName": "Amélie B.",
+    "phone": "07 63 75 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -1650,9 +1650,9 @@
   {
     "id": "user-009",
     "prenom": "Anaïs",
-    "nom": "BARRIER",
-    "fullName": "Anaïs BARRIER",
-    "phone": "06 47 85 54 48",
+    "nom": "B.",
+    "fullName": "Anaïs B.",
+    "phone": "06 47 85 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -1751,9 +1751,9 @@
   {
     "id": "user-010",
     "prenom": "Angel",
-    "nom": "SCOZZAFAVE",
-    "fullName": "Angel SCOZZAFAVE",
-    "phone": "06 04 50 26 35",
+    "nom": "S.",
+    "fullName": "Angel S.",
+    "phone": "06 04 50 ** **",
     "role": "UPSILON - Référente Green Team",
     "regime": "",
     "shifts": []
@@ -1761,9 +1761,9 @@
   {
     "id": "user-011",
     "prenom": "Anne-Sophie",
-    "nom": "CHEVANNE",
-    "fullName": "Anne-Sophie CHEVANNE",
-    "phone": "06 31 50 86 39",
+    "nom": "C.",
+    "fullName": "Anne-Sophie C.",
+    "phone": "06 31 50 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -1882,9 +1882,9 @@
   {
     "id": "user-012",
     "prenom": "Anouchka",
-    "nom": "RAZZANO",
-    "fullName": "Anouchka RAZZANO",
-    "phone": "06 74 94 31 39",
+    "nom": "R.",
+    "fullName": "Anouchka R.",
+    "phone": "06 74 94 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -1983,9 +1983,9 @@
   {
     "id": "user-013",
     "prenom": "Arnaud",
-    "nom": "HUTINET",
-    "fullName": "Arnaud HUTINET",
-    "phone": "06 78 74 70 79",
+    "nom": "H.",
+    "fullName": "Arnaud H.",
+    "phone": "06 78 74 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -2094,9 +2094,9 @@
   {
     "id": "user-014",
     "prenom": "Arthur",
-    "nom": "FORQUY",
-    "fullName": "Arthur FORQUY",
-    "phone": "06 26 63 65 63",
+    "nom": "F.",
+    "fullName": "Arthur F.",
+    "phone": "06 26 63 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -2195,9 +2195,9 @@
   {
     "id": "user-015",
     "prenom": "Arthur",
-    "nom": "BAILLY",
-    "fullName": "Arthur BAILLY",
-    "phone": "06 84 42 83 58",
+    "nom": "B.",
+    "fullName": "Arthur B.",
+    "phone": "06 84 42 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -2446,9 +2446,9 @@
   {
     "id": "user-016",
     "prenom": "Aurélie",
-    "nom": "COGNARD",
-    "fullName": "Aurélie COGNARD",
-    "phone": "06 71 26 52 34",
+    "nom": "C.",
+    "fullName": "Aurélie C.",
+    "phone": "06 71 26 ** **",
     "role": "DBE - Référente Accueil",
     "regime": "",
     "shifts": [
@@ -2627,9 +2627,9 @@
   {
     "id": "user-017",
     "prenom": "Auriane",
-    "nom": "BERTONAZZI",
-    "fullName": "Auriane BERTONAZZI",
-    "phone": "06 69 55 77 51",
+    "nom": "B.",
+    "fullName": "Auriane B.",
+    "phone": "06 69 55 ** **",
     "role": "Bénévole",
     "regime": "Allergie Noisette & Kiwi",
     "shifts": [
@@ -2758,9 +2758,9 @@
   {
     "id": "user-018",
     "prenom": "Benjamin",
-    "nom": "DURIEUX",
-    "fullName": "Benjamin DURIEUX",
-    "phone": "06 80 41 68 92",
+    "nom": "D.",
+    "fullName": "Benjamin D.",
+    "phone": "06 80 41 ** **",
     "role": "Bénévole",
     "regime": "Intolerance feta, Fromage chèvre\n et brebis.",
     "shifts": [
@@ -3029,9 +3029,9 @@
   {
     "id": "user-019",
     "prenom": "Bérénice",
-    "nom": "FORTIER",
-    "fullName": "Bérénice FORTIER",
-    "phone": "06 46 01 80 93",
+    "nom": "F.",
+    "fullName": "Bérénice F.",
+    "phone": "06 46 01 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -3080,9 +3080,9 @@
   {
     "id": "user-020",
     "prenom": "Bruno",
-    "nom": "POILLOT",
-    "fullName": "Bruno POILLOT",
-    "phone": "06 79 23 75 91",
+    "nom": "P.",
+    "fullName": "Bruno P.",
+    "phone": "06 79 23 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -3341,9 +3341,9 @@
   {
     "id": "user-021",
     "prenom": "Camille",
-    "nom": "AUBRY",
-    "fullName": "Camille AUBRY",
-    "phone": "06 24 71 93 87",
+    "nom": "A.",
+    "fullName": "Camille A.",
+    "phone": "06 24 71 ** **",
     "role": "Bénévole",
     "regime": "Allergie aux crevettes",
     "shifts": [
@@ -3652,9 +3652,9 @@
   {
     "id": "user-022",
     "prenom": "Camille",
-    "nom": "FOL",
-    "fullName": "Camille FOL",
-    "phone": "06 45 34 91 46",
+    "nom": "F.",
+    "fullName": "Camille F.",
+    "phone": "06 45 34 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -3743,9 +3743,9 @@
   {
     "id": "user-023",
     "prenom": "Cecile",
-    "nom": "CHOUMILOFF",
-    "fullName": "Cecile CHOUMILOFF",
-    "phone": "06 59 74 38 28",
+    "nom": "C.",
+    "fullName": "Cecile C.",
+    "phone": "06 59 74 ** **",
     "role": "DBE - Référente Scénographie & Maquillage",
     "regime": "",
     "shifts": [
@@ -4254,9 +4254,9 @@
   {
     "id": "user-024",
     "prenom": "Céline",
-    "nom": "DEVELLE",
-    "fullName": "Céline DEVELLE",
-    "phone": "06 03 35 99 01",
+    "nom": "D.",
+    "fullName": "Céline D.",
+    "phone": "06 03 35 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -4365,9 +4365,9 @@
   {
     "id": "user-025",
     "prenom": "Charlotte",
-    "nom": "BARBERET",
-    "fullName": "Charlotte BARBERET",
-    "phone": "07 70 14 73 30",
+    "nom": "B.",
+    "fullName": "Charlotte B.",
+    "phone": "07 70 14 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -4486,9 +4486,9 @@
   {
     "id": "user-026",
     "prenom": "Christophe",
-    "nom": "PIERRON",
-    "fullName": "Christophe PIERRON",
-    "phone": "06 13 56 35 09",
+    "nom": "P.",
+    "fullName": "Christophe P.",
+    "phone": "06 13 56 ** **",
     "role": "Régisseur Technique",
     "regime": "",
     "shifts": [
@@ -4977,9 +4977,9 @@
   {
     "id": "user-027",
     "prenom": "Clémence",
-    "nom": "THIBAULT",
-    "fullName": "Clémence THIBAULT",
-    "phone": "06 29 86 81 58",
+    "nom": "T.",
+    "fullName": "Clémence T.",
+    "phone": "06 29 86 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -5198,9 +5198,9 @@
   {
     "id": "user-028",
     "prenom": "Clément",
-    "nom": "RAIMBOUX",
-    "fullName": "Clément RAIMBOUX",
-    "phone": "06 35 52 30 40",
+    "nom": "R.",
+    "fullName": "Clément R.",
+    "phone": "06 35 52 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -5519,9 +5519,9 @@
   {
     "id": "user-029",
     "prenom": "Elisa",
-    "nom": "DE CHAMBOST",
-    "fullName": "Elisa DE CHAMBOST",
-    "phone": "06 52 31 13 04",
+    "nom": "D.",
+    "fullName": "Elisa D.",
+    "phone": "06 52 31 ** **",
     "role": "CA - Référente Acceuil",
     "regime": "",
     "shifts": [
@@ -5640,9 +5640,9 @@
   {
     "id": "user-030",
     "prenom": "Elise",
-    "nom": "LAUNAY",
-    "fullName": "Elise LAUNAY",
-    "phone": "06 40 95 46 87",
+    "nom": "L.",
+    "fullName": "Elise L.",
+    "phone": "06 40 95 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": []
@@ -5650,9 +5650,9 @@
   {
     "id": "user-031",
     "prenom": "Elsa",
-    "nom": "MOREAU",
-    "fullName": "Elsa MOREAU",
-    "phone": "06 20 79 63 74",
+    "nom": "M.",
+    "fullName": "Elsa M.",
+    "phone": "06 20 79 ** **",
     "role": "DBE - Référente Partenaires & RP",
     "regime": "",
     "shifts": [
@@ -5751,9 +5751,9 @@
   {
     "id": "user-032",
     "prenom": "Emilie",
-    "nom": "PERRICAUDET",
-    "fullName": "Emilie PERRICAUDET",
-    "phone": "06 25 74 47 66",
+    "nom": "P.",
+    "fullName": "Emilie P.",
+    "phone": "06 25 74 ** **",
     "role": "Bénévole - Référente Balaboum",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -5902,9 +5902,9 @@
   {
     "id": "user-033",
     "prenom": "Emma",
-    "nom": "LEFRANCOIS",
-    "fullName": "Emma LEFRANCOIS",
-    "phone": "06 74 32 78 17",
+    "nom": "L.",
+    "fullName": "Emma L.",
+    "phone": "06 74 32 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -6003,9 +6003,9 @@
   {
     "id": "user-034",
     "prenom": "Emmanuel",
-    "nom": "BAILLE",
-    "fullName": "Emmanuel BAILLE",
-    "phone": "06 82 54 08 52",
+    "nom": "B.",
+    "fullName": "Emmanuel B.",
+    "phone": "06 82 54 ** **",
     "role": "Bénévole",
     "regime": "Intolérance lactose",
     "shifts": [
@@ -6384,9 +6384,9 @@
   {
     "id": "user-035",
     "prenom": "Gino",
-    "nom": "MARINACCI",
-    "fullName": "Gino MARINACCI",
-    "phone": "06 79 00 99 87",
+    "nom": "M.",
+    "fullName": "Gino M.",
+    "phone": "06 79 00 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -6515,9 +6515,9 @@
   {
     "id": "user-036",
     "prenom": "Héloïse",
-    "nom": "MERC",
-    "fullName": "Héloïse MERC",
-    "phone": "07 85 12 45 36",
+    "nom": "M.",
+    "fullName": "Héloïse M.",
+    "phone": "07 85 12 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -6586,9 +6586,9 @@
   {
     "id": "user-037",
     "prenom": "Hugo",
-    "nom": "SCOZZAFAVE",
-    "fullName": "Hugo SCOZZAFAVE",
-    "phone": "07 77 30 26 26",
+    "nom": "S.",
+    "fullName": "Hugo S.",
+    "phone": "07 77 30 ** **",
     "role": "UPSILON - Référente Green Team",
     "regime": "",
     "shifts": []
@@ -6596,9 +6596,9 @@
   {
     "id": "user-038",
     "prenom": "Hugo",
-    "nom": "BOST",
-    "fullName": "Hugo BOST",
-    "phone": "06 16 68 79 96",
+    "nom": "B.",
+    "fullName": "Hugo B.",
+    "phone": "06 16 68 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -6797,9 +6797,9 @@
   {
     "id": "user-039",
     "prenom": "Inès",
-    "nom": "DEMULDER",
-    "fullName": "Inès DEMULDER",
-    "phone": "06 48 22 63 55",
+    "nom": "D.",
+    "fullName": "Inès D.",
+    "phone": "06 48 22 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -6848,9 +6848,9 @@
   {
     "id": "user-040",
     "prenom": "Jacky",
-    "nom": "POILLOT",
-    "fullName": "Jacky POILLOT",
-    "phone": "06 16 90 75 91",
+    "nom": "P.",
+    "fullName": "Jacky P.",
+    "phone": "06 16 90 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -7149,9 +7149,9 @@
   {
     "id": "user-041",
     "prenom": "Jérémy",
-    "nom": "FIET",
-    "fullName": "Jérémy FIET",
-    "phone": "06 70 71 36 70",
+    "nom": "F.",
+    "fullName": "Jérémy F.",
+    "phone": "06 70 71 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -7360,9 +7360,9 @@
   {
     "id": "user-042",
     "prenom": "Julien",
-    "nom": "CROS",
-    "fullName": "Julien CROS",
-    "phone": "06 58 09 16 18",
+    "nom": "C.",
+    "fullName": "Julien C.",
+    "phone": "06 58 09 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -7591,9 +7591,9 @@
   {
     "id": "user-043",
     "prenom": "Karinne",
-    "nom": "MAGUET",
-    "fullName": "Karinne MAGUET",
-    "phone": "06 11 75 26 05",
+    "nom": "M.",
+    "fullName": "Karinne M.",
+    "phone": "06 11 75 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -7742,9 +7742,9 @@
   {
     "id": "user-044",
     "prenom": "Laurent",
-    "nom": "SIMONET",
-    "fullName": "Laurent SIMONET",
-    "phone": "07 68 97 07 63",
+    "nom": "S.",
+    "fullName": "Laurent S.",
+    "phone": "07 68 97 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -8263,9 +8263,9 @@
   {
     "id": "user-045",
     "prenom": "Lela",
-    "nom": "kvaratskhelia",
-    "fullName": "Lela kvaratskhelia",
-    "phone": "06 05 71 62 06",
+    "nom": "K.",
+    "fullName": "Lela K.",
+    "phone": "06 05 71 ** **",
     "role": "CESAM",
     "regime": "Allergie champignon",
     "shifts": [
@@ -8444,9 +8444,9 @@
   {
     "id": "user-046",
     "prenom": "Lisa",
-    "nom": "VALENTIN",
-    "fullName": "Lisa VALENTIN",
-    "phone": "06 17 20 36 26",
+    "nom": "V.",
+    "fullName": "Lisa V.",
+    "phone": "06 17 20 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -8545,9 +8545,9 @@
   {
     "id": "user-047",
     "prenom": "Lucie",
-    "nom": "MONNETTE",
-    "fullName": "Lucie MONNETTE",
-    "phone": "06 66 37 74 26",
+    "nom": "M.",
+    "fullName": "Lucie M.",
+    "phone": "06 66 37 ** **",
     "role": "Bénévole - Référente Restauration",
     "regime": "",
     "shifts": [
@@ -8986,9 +8986,9 @@
   {
     "id": "user-048",
     "prenom": "Lucile",
-    "nom": "CARETTE",
-    "fullName": "Lucile CARETTE",
-    "phone": "06 86 60 78 60",
+    "nom": "C.",
+    "fullName": "Lucile C.",
+    "phone": "06 86 60 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -9127,9 +9127,9 @@
   {
     "id": "user-049",
     "prenom": "Luisa",
-    "nom": "WERNER",
-    "fullName": "Luisa WERNER",
-    "phone": "07 66 54 16 09 \n(+49 171 6150395\n pour whatsapp)",
+    "nom": "W.",
+    "fullName": "Luisa W.",
+    "phone": "07 66 54 ** **",
     "role": "Bénévole",
     "regime": "Sans Gluten",
     "shifts": [
@@ -9198,9 +9198,9 @@
   {
     "id": "user-050",
     "prenom": "Marie",
-    "nom": "LANG",
-    "fullName": "Marie LANG",
-    "phone": "06 48 74 99 52",
+    "nom": "L.",
+    "fullName": "Marie L.",
+    "phone": "06 48 74 ** **",
     "role": "CA - Référente Acceuil",
     "regime": "",
     "shifts": [
@@ -9419,9 +9419,9 @@
   {
     "id": "user-051",
     "prenom": "Marie",
-    "nom": "GERARD",
-    "fullName": "Marie GERARD",
-    "phone": "06 47 95 15 33",
+    "nom": "G.",
+    "fullName": "Marie G.",
+    "phone": "06 47 95 ** **",
     "role": "Bénévole",
     "regime": "Pas de fromage",
     "shifts": [
@@ -9570,9 +9570,9 @@
   {
     "id": "user-052",
     "prenom": "Marilyn",
-    "nom": "TOURNOT",
-    "fullName": "Marilyn TOURNOT",
-    "phone": "06 03 10 57 24",
+    "nom": "T.",
+    "fullName": "Marilyn T.",
+    "phone": "06 03 10 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -9641,9 +9641,9 @@
   {
     "id": "user-053",
     "prenom": "Marion",
-    "nom": "ABRIAL",
-    "fullName": "Marion ABRIAL",
-    "phone": "06 44 29 41 52",
+    "nom": "A.",
+    "fullName": "Marion A.",
+    "phone": "06 44 29 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -9762,9 +9762,9 @@
   {
     "id": "user-054",
     "prenom": "Martin",
-    "nom": "MAUCHAMP",
-    "fullName": "Martin MAUCHAMP",
-    "phone": "06 31 98 73 87",
+    "nom": "M.",
+    "fullName": "Martin M.",
+    "phone": "06 31 98 ** **",
     "role": "Bénévole - Référent Bar",
     "regime": "",
     "shifts": [
@@ -10053,9 +10053,9 @@
   {
     "id": "user-055",
     "prenom": "Maryse",
-    "nom": "POILLOT",
-    "fullName": "Maryse POILLOT",
-    "phone": "06 21 54 72 51",
+    "nom": "P.",
+    "fullName": "Maryse P.",
+    "phone": "06 21 54 ** **",
     "role": "Bénévole",
     "regime": "Allergie fraise",
     "shifts": [
@@ -10254,9 +10254,9 @@
   {
     "id": "user-056",
     "prenom": "Matéo",
-    "nom": "VACHERESSE",
-    "fullName": "Matéo VACHERESSE",
-    "phone": "06 95 54 08 73",
+    "nom": "V.",
+    "fullName": "Matéo V.",
+    "phone": "06 95 54 ** **",
     "role": "Référent Artiste",
     "regime": "",
     "shifts": [
@@ -10785,9 +10785,9 @@
   {
     "id": "user-057",
     "prenom": "Matthieu",
-    "nom": "LOISY",
-    "fullName": "Matthieu LOISY",
-    "phone": "06 43 82 03 63",
+    "nom": "L.",
+    "fullName": "Matthieu L.",
+    "phone": "06 43 82 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -10946,9 +10946,9 @@
   {
     "id": "user-058",
     "prenom": "Matthieu",
-    "nom": "MARECHAL",
-    "fullName": "Matthieu MARECHAL",
-    "phone": "07 86 83 65 62",
+    "nom": "M.",
+    "fullName": "Matthieu M.",
+    "phone": "07 86 83 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -11167,9 +11167,9 @@
   {
     "id": "user-059",
     "prenom": "Maurane",
-    "nom": "LONGEPE",
-    "fullName": "Maurane LONGEPE",
-    "phone": "06 45 15 80 93",
+    "nom": "L.",
+    "fullName": "Maurane L.",
+    "phone": "06 45 15 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -11328,9 +11328,9 @@
   {
     "id": "user-060",
     "prenom": "Maxime",
-    "nom": "DELOMPRE",
-    "fullName": "Maxime DELOMPRE",
-    "phone": "06 59 01 41 70",
+    "nom": "D.",
+    "fullName": "Maxime D.",
+    "phone": "06 59 01 ** **",
     "role": "Référent Bénévole & Technique",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -11409,9 +11409,9 @@
   {
     "id": "user-061",
     "prenom": "Mona",
-    "nom": "FLORIOT",
-    "fullName": "Mona FLORIOT",
-    "phone": "06 33 83 65 85",
+    "nom": "F.",
+    "fullName": "Mona F.",
+    "phone": "06 33 83 ** **",
     "role": "Bénévole - Référente Communication",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -11510,9 +11510,9 @@
   {
     "id": "user-062",
     "prenom": "Monica",
-    "nom": "HOSSEINI",
-    "fullName": "Monica HOSSEINI",
-    "phone": "06 05 85 38 66",
+    "nom": "H.",
+    "fullName": "Monica H.",
+    "phone": "06 05 85 ** **",
     "role": "CESAM",
     "regime": "",
     "shifts": [
@@ -11611,9 +11611,9 @@
   {
     "id": "user-063",
     "prenom": "Morgane",
-    "nom": "POILLOT",
-    "fullName": "Morgane POILLOT",
-    "phone": "06 27 57 78 80",
+    "nom": "P.",
+    "fullName": "Morgane P.",
+    "phone": "06 27 57 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -11802,9 +11802,9 @@
   {
     "id": "user-064",
     "prenom": "Nadine",
-    "nom": "POILLOT",
-    "fullName": "Nadine POILLOT",
-    "phone": "06 79 23 75 91",
+    "nom": "P.",
+    "fullName": "Nadine P.",
+    "phone": "06 79 23 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -11983,9 +11983,9 @@
   {
     "id": "user-065",
     "prenom": "Océane",
-    "nom": "BECI",
-    "fullName": "Océane BECI",
-    "phone": "06 19 40 44 30",
+    "nom": "B.",
+    "fullName": "Océane B.",
+    "phone": "06 19 40 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -12224,9 +12224,9 @@
   {
     "id": "user-066",
     "prenom": "Parmida",
-    "nom": "BAYAT",
-    "fullName": "Parmida BAYAT",
-    "phone": "07 45 02 30 03",
+    "nom": "B.",
+    "fullName": "Parmida B.",
+    "phone": "07 45 02 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -12655,9 +12655,9 @@
   {
     "id": "user-067",
     "prenom": "Pauline",
-    "nom": "SALLET",
-    "fullName": "Pauline SALLET",
-    "phone": "06 86 32 88 00",
+    "nom": "S.",
+    "fullName": "Pauline S.",
+    "phone": "06 86 32 ** **",
     "role": "CA - Référente Acceuil",
     "regime": "Allergie celeri & kiwi",
     "shifts": [
@@ -12866,9 +12866,9 @@
   {
     "id": "user-068",
     "prenom": "Pierre",
-    "nom": "MONTAGNIER",
-    "fullName": "Pierre MONTAGNIER",
-    "phone": "06 21 69 86 90",
+    "nom": "M.",
+    "fullName": "Pierre M.",
+    "phone": "06 21 69 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -13017,9 +13017,9 @@
   {
     "id": "user-069",
     "prenom": "Pierre-Baptiste",
-    "nom": "SUBTIL",
-    "fullName": "Pierre-Baptiste SUBTIL",
-    "phone": "06 22 53 82 80",
+    "nom": "S.",
+    "fullName": "Pierre-Baptiste S.",
+    "phone": "06 22 53 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -13268,9 +13268,9 @@
   {
     "id": "user-070",
     "prenom": "Robin",
-    "nom": "COUHARD",
-    "fullName": "Robin COUHARD",
-    "phone": "06 33 35 91 32",
+    "nom": "C.",
+    "fullName": "Robin C.",
+    "phone": "06 33 35 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -13379,9 +13379,9 @@
   {
     "id": "user-071",
     "prenom": "Robinson",
-    "nom": "BOSSAERT",
-    "fullName": "Robinson BOSSAERT",
-    "phone": "06 26 29 39 40",
+    "nom": "B.",
+    "fullName": "Robinson B.",
+    "phone": "06 26 29 ** **",
     "role": "Bénévole",
     "regime": "Allergies : arachides (cacahuètes), \nfruits à coques et noix, poissons et\nfruits de mer.",
     "shifts": [
@@ -13470,9 +13470,9 @@
   {
     "id": "user-072",
     "prenom": "Romain",
-    "nom": "BAHR",
-    "fullName": "Romain BAHR",
-    "phone": "06 79 15 75 37",
+    "nom": "B.",
+    "fullName": "Romain B.",
+    "phone": "06 79 15 ** **",
     "role": "Bénévole",
     "regime": "Allergie pomme crue",
     "shifts": [
@@ -13651,9 +13651,9 @@
   {
     "id": "user-073",
     "prenom": "Romain",
-    "nom": "DROUIN",
-    "fullName": "Romain DROUIN",
-    "phone": "06 95 88 61 01",
+    "nom": "D.",
+    "fullName": "Romain D.",
+    "phone": "06 95 88 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -13812,9 +13812,9 @@
   {
     "id": "user-074",
     "prenom": "Sacha",
-    "nom": "THEROINE",
-    "fullName": "Sacha THEROINE",
-    "phone": "06 71 17 51 32",
+    "nom": "T.",
+    "fullName": "Sacha T.",
+    "phone": "06 71 17 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -13883,9 +13883,9 @@
   {
     "id": "user-075",
     "prenom": "Samuel",
-    "nom": "GROSJEAN",
-    "fullName": "Samuel GROSJEAN",
-    "phone": "06 27 50 86 48",
+    "nom": "G.",
+    "fullName": "Samuel G.",
+    "phone": "06 27 50 ** **",
     "role": "Communication - Photo",
     "regime": "",
     "shifts": [
@@ -14254,9 +14254,9 @@
   {
     "id": "user-076",
     "prenom": "Simon",
-    "nom": "MOYSE",
-    "fullName": "Simon MOYSE",
-    "phone": "06 48 89 53 85",
+    "nom": "M.",
+    "fullName": "Simon M.",
+    "phone": "06 48 89 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -14435,9 +14435,9 @@
   {
     "id": "user-077",
     "prenom": "Teddy",
-    "nom": "CORNAUT",
-    "fullName": "Teddy CORNAUT",
-    "phone": "06 58 96 64 89",
+    "nom": "C.",
+    "fullName": "Teddy C.",
+    "phone": "06 58 96 ** **",
     "role": "CA - Référent Bar",
     "regime": "",
     "shifts": [
@@ -14666,9 +14666,9 @@
   {
     "id": "user-078",
     "prenom": "Thalia",
-    "nom": "FOY",
-    "fullName": "Thalia FOY",
-    "phone": "07 81 80 25 37",
+    "nom": "F.",
+    "fullName": "Thalia F.",
+    "phone": "07 81 80 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -14947,9 +14947,9 @@
   {
     "id": "user-079",
     "prenom": "Théophile",
-    "nom": "DUTARTRE",
-    "fullName": "Théophile DUTARTRE",
-    "phone": "06 77 67 94 39",
+    "nom": "D.",
+    "fullName": "Théophile D.",
+    "phone": "06 77 67 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -15078,9 +15078,9 @@
   {
     "id": "user-080",
     "prenom": "Thibault",
-    "nom": "HÉLIOT",
-    "fullName": "Thibault HÉLIOT",
-    "phone": "06 23 06 87 79",
+    "nom": "H.",
+    "fullName": "Thibault H.",
+    "phone": "06 23 06 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -15369,9 +15369,9 @@
   {
     "id": "user-081",
     "prenom": "Thomas",
-    "nom": "JACQUOT",
-    "fullName": "Thomas JACQUOT",
-    "phone": "06 64 99 95 42",
+    "nom": "J.",
+    "fullName": "Thomas J.",
+    "phone": "06 64 99 ** **",
     "role": "Bénévole",
     "regime": "Végétarien.ne",
     "shifts": [
@@ -15440,9 +15440,9 @@
   {
     "id": "user-082",
     "prenom": "Tringa",
-    "nom": "XHEMAJLI",
-    "fullName": "Tringa XHEMAJLI",
-    "phone": "06 02 59 84 04",
+    "nom": "X.",
+    "fullName": "Tringa X.",
+    "phone": "06 02 59 ** **",
     "role": "Bénévole",
     "regime": "No pork",
     "shifts": [
@@ -15511,9 +15511,9 @@
   {
     "id": "user-083",
     "prenom": "Victor",
-    "nom": "LE MONIER",
-    "fullName": "Victor LE MONIER",
-    "phone": "06 68 73 06 51",
+    "nom": "L.",
+    "fullName": "Victor L.",
+    "phone": "06 68 73 ** **",
     "role": "CA - Référent Bar",
     "regime": "",
     "shifts": [
@@ -15842,9 +15842,9 @@
   {
     "id": "user-084",
     "prenom": "Vincent",
-    "nom": "BOUCHOT",
-    "fullName": "Vincent BOUCHOT",
-    "phone": "06 67 03 40 82",
+    "nom": "B.",
+    "fullName": "Vincent B.",
+    "phone": "06 67 03 ** **",
     "role": "DBE - Référent Artiste",
     "regime": "Intolérance Poivron",
     "shifts": [
@@ -16133,9 +16133,9 @@
   {
     "id": "user-085",
     "prenom": "Vincent",
-    "nom": "PASQUET",
-    "fullName": "Vincent PASQUET",
-    "phone": "06 87 58 07 79",
+    "nom": "P.",
+    "fullName": "Vincent P.",
+    "phone": "06 87 58 ** **",
     "role": "Bénévole",
     "regime": "",
     "shifts": [
@@ -16264,9 +16264,9 @@
   {
     "id": "user-086",
     "prenom": "Yahya",
-    "nom": "DOSTDAR",
-    "fullName": "Yahya DOSTDAR",
-    "phone": "06 02 28 66 21",
+    "nom": "D.",
+    "fullName": "Yahya D.",
+    "phone": "06 02 28 ** **",
     "role": "CESAM",
     "regime": "",
     "shifts": [
@@ -16325,9 +16325,9 @@
   {
     "id": "user-087",
     "prenom": "Yoshi",
-    "nom": "GASCON",
-    "fullName": "Yoshi GASCON",
-    "phone": "06 86 95 12 51",
+    "nom": "G.",
+    "fullName": "Yoshi G.",
+    "phone": "06 86 95 ** **",
     "role": "Bénévole - Référent Tattoo",
     "regime": "",
     "shifts": [
