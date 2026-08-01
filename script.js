@@ -386,3 +386,12 @@ if (document.readyState === 'loading') {
 } else {
   initApp();
 }
+
+// Enregistrement du Service Worker pour PWA Standalone
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => {
+      console.log('SW registration skipped or failed:', err);
+    });
+  });
+}
