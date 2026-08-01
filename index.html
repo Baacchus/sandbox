@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Planning Exploitation - Balabar 2026</title>
-  
+  <title>Balabar 2026</title>
+
+  <!-- Meta Tags PWA & Plein Écran Mobile (Standalone) -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="balabar-logo.svg">
+  <link rel="apple-touch-icon" href="balabar-logo.svg">
+  <meta name="theme-color" content="#0b0f19">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Balabar 2026">
+
   <!-- Typographie moderne -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body data-theme="dark">
 
   <!-- Glow d'arrière-plan d'ambiance -->
@@ -21,12 +34,12 @@
     <div class="glow-sphere sphere-3"></div>
   </div>
 
-  <!-- ÉCRAN DE VERROUILLAGE CODE PIN (0000) -->
+  <!-- ÉCRAN DE VERROUILLAGE CODE PIN (1312) -->
   <div id="pin-screen" class="pin-screen active">
     <div class="pin-card glass-panel">
       <div class="pin-header">
         <div class="app-logo">
-          <span class="logo-icon">🎪</span>
+          <img src="balabar-logo.svg" alt="Balabar Logo" style="width: 48px; height: 48px; object-fit: contain;">
         </div>
         <h2>BALABAR 2026</h2>
         <p class="pin-subtitle">Planning Exploitation Équipe Bénévoles</p>
@@ -66,14 +79,15 @@
 
   <!-- APPLICATION PRINCIPALE (Invisible avant déverrouillage) -->
   <div id="app-wrapper" class="app-wrapper hidden">
-    
+
     <!-- Phone Container pour Responsive Desktop & Mobile -->
     <div class="mobile-frame">
-      
+
       <!-- En-tête de l'application -->
       <header class="app-header">
         <div class="header-top">
           <div class="brand">
+            <img src="balabar-logo.svg" alt="Balabar Logo" style="height: 24px; width: 24px; object-fit: contain;">
             <span class="brand-badge">BALABAR 2026</span>
             <span class="live-dot" title="En direct"></span>
           </div>
@@ -93,7 +107,7 @@
 
       <!-- Zone de Sélection et de Filtrage -->
       <section class="controls-section glass-panel">
-        
+
         <!-- Menu déroulant Sélection de Personne -->
         <div class="form-group">
           <label for="person-select" class="form-label">
@@ -115,15 +129,18 @@
           <button id="clear-search" class="clear-btn hidden">&times;</button>
         </div>
 
-        <!-- Profil du membre sélectionné -->
+        <!-- Profil du membre sélectionné (Structure hiérarchique) -->
         <div id="person-summary-card" class="person-summary hidden">
-          <div class="avatar" id="person-avatar">?</div>
-          <div class="person-details">
-            <h3 id="person-name-display">Prénom Nom</h3>
-            <div class="person-tags" id="person-tags">
-              <span class="badge badge-team" id="person-team-badge">Équipe</span>
+          <div class="person-profile-header">
+            <div class="avatar" id="person-avatar">?</div>
+            <div class="person-main-info">
+              <h3 id="person-name-display">Prénom Nom</h3>
+              <div id="person-role-badge-container">
+                <span class="badge badge-role" id="person-team-badge">Équipe</span>
+              </div>
             </div>
           </div>
+          <div class="person-extra-info" id="person-extra-info"></div>
         </div>
 
         <!-- Filtre de Période / Vues -->
@@ -152,7 +169,7 @@
 
       <!-- Zone d'affichage du Planning -->
       <main class="schedule-container">
-        
+
         <!-- Header de la Liste -->
         <div class="list-header">
           <h2>Créneaux assignés</h2>
@@ -177,4 +194,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>

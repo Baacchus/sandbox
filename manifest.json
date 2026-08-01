@@ -1,0 +1,18 @@
+{
+  "name": "Balabar 2026 - Planning Bénévoles",
+  "short_name": "Balabar 2026",
+  "description": "Application de visualisation du planning bénévoles Balabar 2026",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#0b0f19",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "balabar-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

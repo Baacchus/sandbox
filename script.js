@@ -1,6 +1,6 @@
 /**
  * Application Mobile de Visualisation de Planning - Balabar 2026
- * Gestion de l'authentification PIN (0000), sélection de bénévole et affichage des créneaux.
+ * Gestion de l'authentification PIN (1312), sélection de bénévole et affichage des créneaux.
  */
 
 function initApp() {
@@ -8,7 +8,7 @@ function initApp() {
   // ==========================================
   // 1. ÉTAT DE L'APPLICATION & SÉCURITÉ PIN
   // ==========================================
-  const PIN_CORRECT = "0000";
+  const PIN_CORRECT = "1312";
   let currentPinInput = "";
   let allPeopleData = [];
   let selectedPerson = null;
@@ -43,7 +43,7 @@ function initApp() {
   const filterTabs = document.querySelectorAll('.filter-tabs .tab-btn');
 
   // ==========================================
-  // 2. GESTION DU PAVÉ NUMÉRIQUE & PIN (0000)
+  // 2. GESTION DU PAVÉ NUMÉRIQUE & PIN (1312)
   // ==========================================
   if (numpadBtns) {
     numpadBtns.forEach(btn => {
@@ -227,17 +227,31 @@ function initApp() {
     selectedPerson = allPeopleData.find(p => p.id === personId);
     if (!selectedPerson) return;
 
-    // Mise à jour de la carte profil
+    // Mise à jour de la carte profil hiérarchique
     const initials = selectedPerson.prenom ? selectedPerson.prenom.charAt(0) + (selectedPerson.nom ? selectedPerson.nom.charAt(0) : '') : 'B';
     if (personAvatar) personAvatar.textContent = initials.toUpperCase();
     if (personNameDisplay) personNameDisplay.textContent = selectedPerson.fullName;
     
-    if (personTags) {
-      personTags.innerHTML = `
-        <span class="badge badge-team">${selectedPerson.role || 'Bénévole'}</span>
-        ${selectedPerson.phone ? `<span class="badge" style="background:rgba(6,182,212,0.15); color:var(--accent-cyan)">📞 ${selectedPerson.phone}</span>` : ''}
-        ${selectedPerson.regime ? `<span class="badge" style="background:rgba(245,158,11,0.15); color:var(--accent-amber)">🥗 ${selectedPerson.regime}</span>` : ''}
-      `;
+    const roleContainer = document.getElementById('person-role-badge-container');
+    if (roleContainer) {
+      roleContainer.innerHTML = `<span class="badge badge-role">${selectedPerson.role || 'Bénévole'}</span>`;
+    }
+
+    const extraInfo = document.getElementById('person-extra-info');
+    if (extraInfo) {
+      let items = [];
+      if (selectedPerson.phone) {
+        items.push(`<div class="info-pill phone-pill"><span>📞</span> <span>${selectedPerson.phone}</span></div>`);
+      }
+      if (selectedPerson.regime) {
+        items.push(`<div class="info-pill regime-pill"><span>🥗</span> <span>${selectedPerson.regime}</span></div>`);
+      }
+      extraInfo.innerHTML = items.join('');
+      if (items.length === 0) {
+        extraInfo.style.display = 'none';
+      } else {
+        extraInfo.style.display = 'flex';
+      }
     }
 
     if (personSummaryCard) personSummaryCard.classList.remove('hidden');
