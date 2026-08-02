@@ -101,7 +101,7 @@
 
         <div class="header-title-section">
           <h1>Planning Exploitation</h1>
-          <p class="subtitle">Gestion & visualisation des créneaux bénévoles</p>
+          <p class="subtitle">Gestion & visualisation des shifts bénévoles</p>
         </div>
       </header>
 
@@ -118,7 +118,6 @@
             <select id="person-select" class="custom-select">
               <option value="">-- Chargement des bénévoles... --</option>
             </select>
-            <span class="select-arrow">▼</span>
           </div>
         </div>
 
@@ -130,13 +129,13 @@
         </div>
 
         <!-- Profil du membre sélectionné (Structure hiérarchique) -->
-        <div id="person-summary-card" class="person-summary hidden">
+        <div id="person-summary-card" class="person-summary glass-panel hidden">
           <div class="person-profile-header">
             <div class="avatar" id="person-avatar">?</div>
             <div class="person-main-info">
               <h3 id="person-name-display">Prénom Nom</h3>
-              <div id="person-role-badge-container">
-                <span class="badge badge-role" id="person-team-badge">Équipe</span>
+              <div class="role-badge-container" id="person-role-badge-container">
+                <!-- Badges insérés en JS -->
               </div>
             </div>
           </div>
@@ -145,7 +144,7 @@
 
         <!-- Filtre de Période / Vues -->
         <div class="filter-tabs">
-          <button class="tab-btn active" data-period="all">Tout</button>
+          <button class="tab-btn active" data-period="all">Tous</button>
           <button class="tab-btn" data-period="today">Aujourd'hui</button>
           <button class="tab-btn" data-period="upcoming">À venir</button>
         </div>
@@ -155,7 +154,7 @@
       <section class="stats-grid" id="stats-grid">
         <div class="stat-card glass-panel">
           <span class="stat-value" id="stat-total-shifts">0</span>
-          <span class="stat-label">Créneaux</span>
+          <span class="stat-label">Shifts</span>
         </div>
         <div class="stat-card glass-panel">
           <span class="stat-value" id="stat-total-hours">0h</span>
@@ -172,11 +171,11 @@
 
         <!-- Header de la Liste -->
         <div class="list-header">
-          <h2>Créneaux assignés</h2>
-          <span class="shift-count-badge" id="shift-count-badge">0 créneau</span>
+          <h2>Shifts assignés</h2>
+          <span class="shift-count-badge" id="shift-count-badge">0 shift</span>
         </div>
 
-        <!-- Liste des créneaux (Injectée dynamiquement en JS) -->
+        <!-- Liste des shifts (Injectée dynamiquement en JS) -->
         <div id="schedule-list" class="schedule-list">
           <div class="empty-state glass-panel">
             <span class="empty-icon">👈</span>

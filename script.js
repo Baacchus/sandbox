@@ -164,6 +164,150 @@ function initApp() {
     }
   }
 
+  // ==========================================
+  // HELPER FUNCTIONS FOR SHIFT MERGING & NIGHT SHIFTS
+  // ==========================================
+  function getPreviousDateStr(dateISO) {
+    if (!dateISO) return dateISO;
+    const parts = dateISO.split('-');
+    if (parts.length !== 3) return dateISO;
+    const d = new Date(Date.UTC(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10)));
+    d.setUTCDate(d.getUTCDate() - 1);
+    const y = d.getUTCFullYear();
+    const m = String(d.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(d.getUTCDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  function formatDateLabel(dateISO) {
+    if (!dateISO) return '';
+    const parts = dateISO.split('-');
+    if (parts.length !== 3) return dateISO;
+    const d = new Date(Date.UTC(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10)));
+    const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+    const dayName = days[d.getUTCDay()];
+    const dayNum = String(d.getUTCDate()).padStart(2, '0');
+    const monthName = months[d.getUTCMonth()];
+    const year = d.getUTCFullYear();
+    return `${dayName} ${dayNum} ${monthName} ${year}`;
+  }
+
+  function parseShiftTime(timeStr) {
+    if (!timeStr) return { start: 0, end: 0, isMidnightShift: false };
+    const str = timeStr.trim().toLowerCase();
+
+    if (str === '00h-01h' || str === '00h - 01h' || str === '00:00 - 01:00') {
+      return { start: 0, end: 1, isMidnightShift: true };
+    }
+    if (str === '23h - 00h' || str === '23h-00h' || str === '23:00 - 00:00') {
+      return { start: 23, end: 24, isMidnightShift: false };
+    }
+
+    let match = str.match(/^(\d{1,2})h\s*-\s*(\d{1,2})h$/);
+    if (match) {
+      let s = parseInt(match[1], 10);
+      let e = parseInt(match[2], 10);
+      if (e === 0) e = 24;
+      if (e < s) e += 24;
+      return { start: s, end: e, isMidnightShift: false };
+    }
+
+    match = str.match(/^(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})$/);
+    if (match) {
+      let s = parseInt(match[1], 10);
+      let e = parseInt(match[3], 10);
+      if (e === 0) e = 24;
+      if (e < s) e += 24;
+      return { start: s, end: e, isMidnightShift: false };
+    }
+
+    if (str === '10:00:00') return { start: 10, end: 14, isMidnightShift: false };
+    if (str === '14:00:00') return { start: 14, end: 18, isMidnightShift: false };
+
+    match = str.match(/^(\d{1,2})/);
+    if (match) {
+      let s = parseInt(match[1], 10);
+      return { start: s, end: s + 1, isMidnightShift: false };
+    }
+
+    return { start: 0, end: 0, isMidnightShift: false };
+  }
+
+  function formatTimeRange(startHour, endHour) {
+    const formatHour = (h) => {
+      let normalized = h % 24;
+      return String(normalized).padStart(2, '0') + 'h';
+    };
+    return `${formatHour(startHour)} - ${formatHour(endHour)}`;
+  }
+
+  function getProcessedShifts(rawShifts) {
+    if (!rawShifts || !Array.isArray(rawShifts) || rawShifts.length === 0) return [];
+
+    const preparedShifts = rawShifts.map(shift => {
+      const s = { ...shift };
+      const parsed = parseShiftTime(s.time);
+
+      if (parsed.isMidnightShift) {
+        // 00h-01h shift: keep the date intact as defined in data.json,
+        // but treat hours as 24-25 so it sorts after 23h-00h on the same day.
+        s._startHour = 24;
+        s._endHour = 25;
+      } else {
+        s._startHour = parsed.start;
+        s._endHour = parsed.end;
+      }
+      s._duration = s._endHour - s._startHour;
+      if (s._duration <= 0) s._duration = s.durationHours || 1;
+      return s;
+    });
+
+    const groupedByDate = {};
+    preparedShifts.forEach(s => {
+      if (!groupedByDate[s.date]) groupedByDate[s.date] = [];
+      groupedByDate[s.date].push(s);
+    });
+
+    const mergedShifts = [];
+    const sortedDates = Object.keys(groupedByDate).sort();
+
+    sortedDates.forEach(dateKey => {
+      const dayShifts = groupedByDate[dateKey];
+      dayShifts.sort((a, b) => a._startHour - b._startHour);
+
+      let currentMerged = null;
+
+      dayShifts.forEach(s => {
+        if (!currentMerged) {
+          currentMerged = { ...s };
+        } else {
+          if (s._startHour === currentMerged._endHour) {
+            currentMerged._endHour = s._endHour;
+            currentMerged._duration += s._duration;
+            currentMerged.durationHours = currentMerged._duration;
+            if (s.notes && s.notes !== currentMerged.notes) {
+              currentMerged.notes = currentMerged.notes ? `${currentMerged.notes} | ${s.notes}` : s.notes;
+            }
+          } else {
+            currentMerged.time = formatTimeRange(currentMerged._startHour, currentMerged._endHour);
+            currentMerged.durationHours = currentMerged._duration;
+            mergedShifts.push(currentMerged);
+            currentMerged = { ...s };
+          }
+        }
+      });
+
+      if (currentMerged) {
+        currentMerged.time = formatTimeRange(currentMerged._startHour, currentMerged._endHour);
+        currentMerged.durationHours = currentMerged._duration;
+        mergedShifts.push(currentMerged);
+      }
+    });
+
+    return mergedShifts;
+  }
+
   function populatePersonSelect(list) {
     if (!personSelect) return;
     personSelect.innerHTML = `<option value="">-- Choisir une personne (${list.length} bénévoles) --</option>`;
@@ -171,8 +315,9 @@ function initApp() {
     list.forEach(p => {
       const option = document.createElement('option');
       option.value = p.id;
-      const shiftCount = p.shifts ? p.shifts.length : 0;
-      option.textContent = `${p.fullName} (${shiftCount} créneau${shiftCount > 1 ? 'x' : ''})`;
+      const processedShifts = getProcessedShifts(p.shifts);
+      const shiftCount = processedShifts.length;
+      option.textContent = `${p.fullName} (${shiftCount} shift${shiftCount > 1 ? 's' : ''})`;
       personSelect.appendChild(option);
     });
   }
@@ -280,12 +425,7 @@ function initApp() {
       return;
     }
 
-    let shifts = [...selectedPerson.shifts];
-
-    shifts.sort((a, b) => {
-      if (a.date !== b.date) return a.date.localeCompare(b.date);
-      return a.time.localeCompare(b.time);
-    });
+    let shifts = getProcessedShifts(selectedPerson.shifts);
 
     if (activePeriodFilter === 'today') {
       const todayISO = new Date().toISOString().split('T')[0];
@@ -308,7 +448,7 @@ function initApp() {
     if (statTotalShifts) statTotalShifts.textContent = shiftsCount;
     if (statTotalHours) statTotalHours.textContent = `${hoursCount}h`;
     if (statRolesCount) statRolesCount.textContent = rolesCount;
-    if (shiftCountBadge) shiftCountBadge.textContent = `${shiftsCount} créneau${shiftsCount > 1 ? 'x' : ''}`;
+    if (shiftCountBadge) shiftCountBadge.textContent = `${shiftsCount} shift${shiftsCount > 1 ? 's' : ''}`;
   }
 
   function renderSchedule(shifts) {
@@ -318,7 +458,7 @@ function initApp() {
       scheduleList.innerHTML = `
         <div class="empty-state glass-panel">
           <span class="empty-icon">📅</span>
-          <p>${selectedPerson ? 'Aucun créneau ne correspond à cette période.' : 'Veuillez sélectionner une personne ci-dessus.'}</p>
+          <p>${selectedPerson ? 'Aucun shift ne correspond à cette période.' : 'Veuillez sélectionner une personne ci-dessus.'}</p>
         </div>
       `;
       return;
